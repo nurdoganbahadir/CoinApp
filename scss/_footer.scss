@@ -1,1 +1,7 @@
 @use "veriables";
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: veriables.$text-color;
+}
