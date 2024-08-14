@@ -1,1 +1,9 @@
 @use "veriables";
+
+header {
+  text-align: center;
+  padding: 1.6rem;
+  h1{
+    color: veriables.$text-color;
+  }
+}
