@@ -1,6 +1,8 @@
 const searchInput = document.querySelector("#search");
 const searchBtn = document.querySelector(".btn");
 const cardDiv = document.querySelector(".cardDiv");
+const natification = document.querySelector(".natification");
+
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const options = {
@@ -15,10 +17,11 @@ searchBtn.addEventListener("click", (e) => {
     .then((result) => {
       result.data.coins.forEach((item) => {
         let cardPrice = parseFloat(item.price).toFixed(2);
-        if (searchInput.value == item.name) {
+
+        if (searchInput.value.toLowerCase() == item.name.toLowerCase()) {
           cardDiv.innerHTML += `
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <button><i class="fa-solid fa-x"></i></button>
+                <button class="removeBtn"><i class="fa-solid fa-x"></i></button>
                 <h3 class="text-light">${item.name}</h3>
                 <p class="text-light">$ <span>${cardPrice}</span></p>
                 <img src="${item.iconUrl}" alt="" />
@@ -27,8 +30,9 @@ searchBtn.addEventListener("click", (e) => {
                     <span>${item.change}%</span>
                 </div>
             </div>
-          
           `;
+        } else{
+            console.log("error");
         }
       });
     })
