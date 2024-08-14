@@ -25,6 +25,7 @@ body {
 
 .container {
   background-color: #89d99d;
+  border-radius: 10px;
 }
 .container form {
   display: flex;
