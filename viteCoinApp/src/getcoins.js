@@ -1,7 +1,7 @@
 import axios from "axios";
 import displayCoins from "./displayCoins";
 import { notify } from "./notify";
-import { myCoinList } from "./storageFun";
+import { myCoinList, setLocalStorage } from "./storageFun";
 
 export const getCoins = async (query) => {
   const url = `https://api.coinranking.com/v2/coins?search=${query}`;
@@ -18,9 +18,16 @@ export const getCoins = async (query) => {
     if (!res.data.data.coins.length) {
       notify("Coin can not be found!", "warning");
     } else {
-      displayCoins(res.data.data.coins[0]);
+      if (!myCoinList.includes(res.data.data.coins[0].name)) {
+        myCoinList.push(res.data.data.coins[0].name);
+        setLocalStorage();
+        displayCoins(res.data.data.coins[0]);
+      } else {
+        notify(`${res.data.data.coins[0].name} already exists!`, "warning");
+      }
     }
   } catch (error) {
     console.log(error);
+    notify("Something went wrong!", "error");
   }
 };

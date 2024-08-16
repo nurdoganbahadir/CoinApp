@@ -1,5 +1,6 @@
 import "./scss/style.scss";
 import { getCoins } from "./src/getcoins";
+import { notify } from "./src/notify";
 
 const form = document.querySelector("header form");
 console.log(form);
@@ -13,7 +14,7 @@ form.addEventListener("submit", (e) => {
 const getInputVal = () => {
   const inputVal = document.querySelector("header input").value;
   if (!inputVal.trim()) {
-    alert("input not be blank!");
+    notify("input not be blank!", "warning");
   } else {
     getCoins(inputVal);
   }

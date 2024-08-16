@@ -1,3 +1,6 @@
+import { notify } from "./notify.js";
+import { updateLocalStorage } from "./storageFun";
+
 const displayCoins = (coin) => {
   const { price, name, change, rank, symbol, iconUrl } = coin;
   const ul = document.querySelector("main .coins");
@@ -24,7 +27,10 @@ const displayCoins = (coin) => {
   `;
   ul.prepend(li);
   li.querySelector(".remove-icon").addEventListener("click", () => {
+    const coinName = li.querySelector(".coin-name").textContent;
     li.remove();
+    notify(`${coinName} successfully deleted!`, "success");
+    updateLocalStorage(coinName);
   });
 };
 
