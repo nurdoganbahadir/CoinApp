@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getCoins = async (query) => {
   const url = `https://api.coinranking.com/v2/coins?search=${query}`;
 
@@ -9,9 +11,12 @@ export const getCoins = async (query) => {
     },
   };
   try {
-    const res = await fetch(url, options);
-    const coinData = await res.json();
-    console.log(coinData);
+    const res = await axios(url, options);
+    if (!res.data.data.coins.length) {
+      alert("coin not found!");
+    } else {
+      displayCoins(res.data.data.coins);
+    }
   } catch (error) {
     console.log(error);
   }
