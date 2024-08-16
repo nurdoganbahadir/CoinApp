@@ -1,5 +1,7 @@
 import axios from "axios";
 import displayCoins from "./displayCoins";
+import { notify } from "./notify";
+import { myCoinList } from "./storageFun";
 
 export const getCoins = async (query) => {
   const url = `https://api.coinranking.com/v2/coins?search=${query}`;
@@ -14,7 +16,7 @@ export const getCoins = async (query) => {
   try {
     const res = await axios(url, options);
     if (!res.data.data.coins.length) {
-      alert("coin not found!");
+      notify("Coin can not be found!", "warning");
     } else {
       displayCoins(res.data.data.coins[0]);
     }
