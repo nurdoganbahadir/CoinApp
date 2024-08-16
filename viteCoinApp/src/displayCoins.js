@@ -6,7 +6,7 @@ const displayCoins = (coin) => {
   li.innerHTML = `
 
     <div class="remove-icon">
-        <i class="fas fa-windows-close"></i>
+        <i class="fas fa-window-close"></i>
     </div>
     <h2 class="coin-name">
         <span>${name}</span>
@@ -15,7 +15,7 @@ const displayCoins = (coin) => {
     <div class="coin-temp">$${Number(price).toFixed(3)}</div>
     <figure>
         <img src="${iconUrl}" alt="" class="coin-icon" />
-        <figcaption style="color: red">
+        <figcaption style='color:${change < 0 ? "red" : "green"}'>
             <i class="fa-solid fa-chart-line"></i>
             <span>${change}%</span>
         </figcaption>
@@ -23,6 +23,9 @@ const displayCoins = (coin) => {
 
   `;
   ul.prepend(li);
+  li.querySelector(".remove-icon").addEventListener("click", () => {
+    li.remove();
+  });
 };
 
 export default displayCoins;
