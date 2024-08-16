@@ -15,6 +15,6 @@ const getInputVal = () => {
   if (!inputVal.trim()) {
     alert("input not be blank!");
   } else {
-    getCoins();
+    getCoins(inputVal);
   }
 };
